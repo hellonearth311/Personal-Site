@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Cantata+One&display=swap');
+
+.cantata-one-regular {
+  font-family: "Cantata One", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+    font-family: "Cantata One";
+}
+
+#mail {
+    color: var(--ink);
+}
+
+:root {
+	--paper: #f6fbfa;
+	--ink: #1d3440;
+	--ink-soft: #2f4f5d;
+	--diffuse-blue: rgba(118, 190, 255, 0.5);
+	--diffuse-green: rgba(116, 222, 171, 0.44);
+	--thread-blue: rgba(67, 146, 219, 0.12);
+	--thread-green: rgba(39, 156, 131, 0.1);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	padding: clamp(1.5rem, 2vw + 1rem, 3rem) clamp(1.25rem, 8vw, 18rem);
+	color: var(--ink);
+	letter-spacing: 0;
+	line-height: 1.6;
+	background-color: var(--paper);
+	position: relative;
+	overflow-x: hidden;
+	isolation: isolate;
+}
+
+body::before {
+	content: "";
+	position: fixed;
+	inset: -10%;
+	z-index: -2;
+	pointer-events: none;
+	background:
+		radial-gradient(circle at 15% 12%, var(--diffuse-blue) 0, transparent 46%),
+		radial-gradient(circle at 82% 16%, var(--diffuse-green) 0, transparent 44%),
+		radial-gradient(circle at 20% 82%, rgba(58, 156, 239, 0.34) 0, transparent 43%),
+		radial-gradient(circle at 86% 78%, rgba(64, 197, 151, 0.32) 0, transparent 42%),
+		linear-gradient(145deg, #f5faf9, #ecf8f6);
+	filter: blur(2px);
+	animation: diffusion-drift 20s ease-in-out infinite alternate;
+}
+
+body::after {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	opacity: 0.75;
+	background:
+		repeating-radial-gradient(circle at 20% 10%, transparent 0 18px, var(--thread-blue) 18px 19px),
+		repeating-linear-gradient(128deg, transparent 0 26px, var(--thread-green) 26px 28px);
+	mix-blend-mode: multiply;
+}
+
+.content {
+	max-width: min(1050px, 100%);
+	margin: 0 auto;
+	font-size: clamp(1rem, 0.2vw + 0.98rem, 1.12rem);
+	text-align: justify;
+}
+
+.intro {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: clamp(1.25rem, 2vw + 0.8rem, 2.5rem);
+}
+
+.intro-text {
+	max-width: 72ch;
+}
+
+.profile-image {
+	width: clamp(180px, 28vw, 300px);
+	max-width: 100%;
+	height: auto;
+	flex: 0 0 auto;
+}
+
+h1 {
+	margin: 0 0 1rem;
+	text-align: left;
+	font-size: clamp(2rem, 3vw + 1rem, 3rem);
+	line-height: 1.1;
+	color: #133445;
+}
+
+p {
+	margin: 0 0 1rem;
+	color: var(--ink-soft);
+}
+
+::selection {
+	color: #0f2d3a;
+	background: rgba(113, 205, 176, 0.45);
+}
+
+@keyframes diffusion-drift {
+	0% {
+		transform: translate3d(-2%, -1%, 0) scale(1);
+	}
+	100% {
+		transform: translate3d(2%, 1.5%, 0) scale(1.04);
+	}
+}
+
+@media (max-width: 700px) {
+	body {
+		padding-left: 1.15rem;
+		padding-right: 1.15rem;
+	}
+
+	.content {
+		text-align: left;
+	}
+
+	.intro {
+		flex-direction: column;
+	}
+
+	.profile-image {
+		width: min(320px, 100%);
+	}
+}
